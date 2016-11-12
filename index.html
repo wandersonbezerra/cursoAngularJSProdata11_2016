@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AngularJS - ProData</title>
+
+    <!--inicio css -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.css">
+
+    <!--inicio js -->
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="app/config/pd-app.js"></script>
+    <script src="app/controller/index.controller.js"></script>
+</head>
+
+<body ng-app="pdApp" class="container">
+
+<div ng-controller="IndexController">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Nome</label>
+                <input type="text" class="form-control"/>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Sobrenome</label>
+                <input type="text" class="form-control"/>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Sobrenome</label>
+                <input type="text" class="form-control"/>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Sobrenome</label>
+                <input type="text" class="form-control"/>
+            </div>
+        </div>
+    </div>
+
+    <span>{{nome}}</span>
+    <button ng-click="ola()">Abrir Olá</button>
+</div>
+
+</body>
+</html>
