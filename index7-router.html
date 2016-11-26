@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AngularJS - ProData</title>
+
+    <!--inicio css -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="node_modules/angular-toastr/dist/angular-toastr.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="node_modules/angular-ui-grid/ui-grid.css">
+    <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
+
+    <!--inicio js -->
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-messages/angular-messages.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.js"></script>
+    <script src="node_modules/angular-toastr/dist/angular-toastr.tpls.js"></script>
+    <script src="node_modules/angular-ui-grid/ui-grid.js"></script>
+    <script src="node_modules/angular-material/angular-material.js"></script>
+    <script src="node_modules/angular-aria/angular-aria.js"></script>
+    <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="node_modules/oclazyload/dist/ocLazyLoad.js"></script>
+
+    <script src="app/config/pd-app.js"></script>
+    <script src="app/config/pd-rotas.config.js"></script>
+    <script src="app/controller/index-router.controller.js"></script>
+    <script src="app/filter/maiusculo.filter.js"></script>
+
+    <script src="app/service/alert.service.js"></script>
+
+
+</head>
+
+<body ng-app="pdApp" class="container" ng-controller="IndexRouterController">
+<h1>INDEX</h1>
+
+<md-nav-bar>
+    <md-nav-item md-nav-click="abrirPagina('cadastroCarro',{param1:'ABACATE'})" name="page1">Cadastro de Carro md-nav-click</md-nav-item>
+    <md-nav-item md-nav-click="abrirPagina('pesquisaCarro')" name="page2">Pesquisa de Carro md-nav-click</md-nav-item>
+
+    <md-nav-item md-nav-sref="cadastroCarro" name="page3">Cadastro de Carro md-nav-sref</md-nav-item>
+    <md-nav-item md-nav-href="#/pesquisa-carro" name="page4">Pesquisa de Carro md-nav-href</md-nav-item>
+
+</md-nav-bar>
+
+<div> <!-- MENU SUPERIOR-->
+    <a ui-sref="cadastroCarro">Cadastro de Carro ui-sref</a>
+    <a ui-sref="pesquisaCarro">Pesquisa de Carro ui-sref</a>
+</div>
+<div> <!-- CORPO-->
+    <ui-view></ui-view>
+</div>
+</body>
+</html>

@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.css">
     <link rel="stylesheet" href="node_modules/angular-toastr/dist/angular-toastr.css">
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="node_modules/angular-ui-grid/ui-grid.css">
+    <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
 
     <!--inicio js -->
     <script src="node_modules/jquery/dist/jquery.js"></script>
@@ -17,12 +19,20 @@
     <script src="node_modules/angular-messages/angular-messages.js"></script>
     <script src="node_modules/angular-animate/angular-animate.js"></script>
     <script src="node_modules/angular-toastr/dist/angular-toastr.tpls.js"></script>
+    <script src="node_modules/angular-ui-grid/ui-grid.js"></script>
+    <script src="node_modules/angular-material/angular-material.js"></script>
+    <script src="node_modules/angular-aria/angular-aria.js"></script>
+    <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="node_modules/oclazyload/dist/ocLazyLoad.js"></script>
 
     <script src="app/config/pd-app.js"></script>
+    <script src="app/config/pd-rotas.config.js"></script>
+    <script src="app/controller/index-router.controller.js"></script>
     <script src="app/filter/maiusculo.filter.js"></script>
 
-    <script src="app/controller/cadastro.carro.controller.js"></script>
     <script src="app/service/alert.service.js"></script>
+
+    <script src="app/controller/cadastro.carro.controller.js"></script>
 
 </head>
 
@@ -33,10 +43,9 @@
         <div class="panel panel-success">
             <div class="panel-heading"><i class="fa fa-edit fa-2x"></i> Cadastro de Carro</div>
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group"
-                             ng-class="{'has-error':carroForm.nomeCarro.$touched && carroForm.nomeCarro.$invalid}">
+                <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+                    <div>
+                        <md-input-container>
                             <label>Carro</label>
                             <input type="text"
                                    class="form-control"
@@ -50,13 +59,10 @@
                             />
                             <div ng-messages="carroForm.nomeCarro.$error" ng-if="carroForm.cor.$touched"
                                  class="text-danger">
-                                <div ng-messages-include="/app/template/input-ng-messages.html"></div>
+                                <div ng-messages-include="app/template/input-ng-messages.html"></div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group"
-                             ng-class="{'has-error':carroForm.cor.$touched && carroForm.cor.$invalid}">
+                        </md-input-container>
+                        <md-input-container>
                             <label>Cor</label>
                             <input type="text"
                                    class="form-control"
@@ -68,15 +74,14 @@
                                    id="cor"
                                    required
                             />
-                            <div ng-messages="carroForm.cor.$error" ng-if="carroForm.cor.$touched" class="text-danger">
-                                <div ng-messages-include="/app/template/input-ng-messages.html"></div>
+                            <div ng-messages="carroForm.cor.$error" ng-if="carroForm.cor.$touched"
+                                 class="text-danger">
+                                <div ng-messages-include="app/template/input-ng-messages.html"></div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group"
-                             ng-class="{'has-error':carroForm.dataLancamento.$touched && carroForm.dataLancamento.$invalid}">
-                            <label>Cor</label>
+                        </md-input-container>
+
+                        <md-input-container>
+                            <label>Data de Lançamento</label>
                             <input type="date"
                                    class="form-control"
                                    ng-model="entidade.dataLancamento"
@@ -88,42 +93,31 @@
                                    required
                                    ng-keypress="($event.which === 13)?salvar():0"
                             />
-                            <div ng-messages="carroForm.dataLancamento.$error" ng-if="carroForm.dataLancamento.$touched" class="text-danger">
-                                <div ng-messages-include="/app/template/input-ng-messages.html"></div>
+                            <div ng-messages="carroForm.dataLancamento.$error"
+                                 ng-if="carroForm.dataLancamento.$touched" class="text-danger">
+                                <div ng-messages-include="app/template/input-ng-messages.html"></div>
                             </div>
-                        </div>
+                        </md-input-container>
                     </div>
-                </div>
+                </md-content>
+
+                <br/>
+
                 <div class="row">
                     <div class="col-md-12">
-                        <h3 class="text-center" ng-if="listaCarros.length < 1">Nenhum Registro!</h3>
-                        <table class="table table-striped" ng-if="listaCarros.length > 0">
-                            <tr>
-                                <th>Código</th>
-                                <th>Nome do Carro</th>
-                                <th>Cor</th>
-                                <th>Data de Lançamento</th>
-                                <th></th>
-                            </tr>
-                            <tr ng-repeat="carro in listaCarros">
-                                <td ng-bind="::carro.idCarro"></td>
-                                <td ng-bind="::carro.nomeCarro"></td>
-                                <td ng-bind="::carro.cor | maiusculo"></td>
-                                <td ng-bind="::carro.dataLancamento | date : 'dd/MM/yyyy'"></td>
-                                <td>
-                                    <button type="button" class="btn btn-warning" ng-click="carregarCarro(carro)">Editar</button>
-                                    <button type="button" class="btn btn-danger" ng-click="excluirCarro(carro)">Excluir</button>
-                                </td>
-                            </tr>
-                        </table>
+                        <div ui-grid="gridOptions"></div>
                     </div>
                 </div>
             </div>
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="button" class="btn btn-primary" ng-click="salvar()"><i class="fa fa-floppy-o"></i></i> Salvar</button>
-                        <button type="button" class="btn btn-warning" ng-click="limpar()"><i class="fa fa-eraser"></i> Limpar</button>
+                        <button type="button" class="btn btn-primary" ng-click="salvar()"><i
+                                class="fa fa-floppy-o"></i></i> Salvar
+                        </button>
+                        <button type="button" class="btn btn-warning" ng-click="limpar()"><i
+                                class="fa fa-eraser"></i> Limpar
+                        </button>
                     </div>
                 </div>
             </div>

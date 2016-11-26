@@ -1,0 +1,15 @@
+<div class="ui-grid-cell-contents" title="TOOLTIP">
+    <button type="button" class="btn btn-info btn-xs" ng-click="grid.appScope.visualizarBairro(row.entity)" title="Visualizar"><i class="fa fa-arrows-alt"></i></button>
+    <button type="button" class="btn btn-warning btn-xs" ng-click="grid.appScope.carregarBairro(row.entity)" title="Alterar"><i class="fa fa-pencil"></i></button>
+    <button type="button" class="btn btn-danger btn-xs" ng-click="grid.appScope.excluirBairro(row.entity)" title="Excluir"><i class="fa fa-trash"></i></button>
+</div>
+
+
+<md-nav-bar>
+    <md-nav-item md-nav-click="abrirPagina('visualizarBairro',{bairro:row.entity)" name="page1">
+        <button type="button" class="btn btn-info btn-xs" title="Visualizar"><i class="fa fa-arrows-alt"></i></button>
+    </md-nav-item>
+    <button type="button" class="btn btn-warning btn-xs" ng-click="grid.appScope.carregarBairro(row.entity)" title="Alterar"><i class="fa fa-pencil"></i></button>
+    <button type="button" class="btn btn-danger btn-xs" ng-click="grid.appScope.excluirBairro(row.entity)" title="Excluir"><i class="fa fa-trash"></i></button>
+
+</md-nav-bar>

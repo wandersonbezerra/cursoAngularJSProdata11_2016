@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.css">
     <link rel="stylesheet" href="node_modules/angular-toastr/dist/angular-toastr.css">
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="node_modules/angular-ui-grid/ui-grid.css">
 
     <!--inicio js -->
     <script src="node_modules/jquery/dist/jquery.js"></script>
@@ -17,12 +18,14 @@
     <script src="node_modules/angular-messages/angular-messages.js"></script>
     <script src="node_modules/angular-animate/angular-animate.js"></script>
     <script src="node_modules/angular-toastr/dist/angular-toastr.tpls.js"></script>
+    <script src="node_modules/angular-ui-grid/ui-grid.js"></script>
 
     <script src="app/config/pd-app.js"></script>
     <script src="app/filter/maiusculo.filter.js"></script>
 
     <script src="app/controller/cadastro.carro.controller.js"></script>
     <script src="app/service/alert.service.js"></script>
+
 
 </head>
 
@@ -50,7 +53,7 @@
                             />
                             <div ng-messages="carroForm.nomeCarro.$error" ng-if="carroForm.cor.$touched"
                                  class="text-danger">
-                                <div ng-messages-include="/app/template/input-ng-messages.html"></div>
+                                <div ng-messages-include="app/template/input-ng-messages.html"></div>
                             </div>
                         </div>
                     </div>
@@ -69,7 +72,7 @@
                                    required
                             />
                             <div ng-messages="carroForm.cor.$error" ng-if="carroForm.cor.$touched" class="text-danger">
-                                <div ng-messages-include="/app/template/input-ng-messages.html"></div>
+                                <div ng-messages-include="app/template/input-ng-messages.html"></div>
                             </div>
                         </div>
                     </div>
@@ -89,43 +92,31 @@
                                    ng-keypress="($event.which === 13)?salvar():0"
                             />
                             <div ng-messages="carroForm.dataLancamento.$error" ng-if="carroForm.dataLancamento.$touched" class="text-danger">
-                                <div ng-messages-include="/app/template/input-ng-messages.html"></div>
+                                <div ng-messages-include="app/template/input-ng-messages.html"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <h3 class="text-center" ng-if="listaCarros.length < 1">Nenhum Registro!</h3>
-                        <table class="table table-striped" ng-if="listaCarros.length > 0">
-                            <tr>
-                                <th>Código</th>
-                                <th>Nome do Carro</th>
-                                <th>Cor</th>
-                                <th>Data de Lançamento</th>
-                                <th></th>
-                            </tr>
-                            <tr ng-repeat="carro in listaCarros">
-                                <td ng-bind="::carro.idCarro"></td>
-                                <td ng-bind="::carro.nomeCarro"></td>
-                                <td ng-bind="::carro.cor | maiusculo"></td>
-                                <td ng-bind="::carro.dataLancamento | date : 'dd/MM/yyyy'"></td>
-                                <td>
-                                    <button type="button" class="btn btn-warning" ng-click="carregarCarro(carro)">Editar</button>
-                                    <button type="button" class="btn btn-danger" ng-click="excluirCarro(carro)">Excluir</button>
-                                </td>
-                            </tr>
-                        </table>
+                        <button type="button" class="btn btn-primary" ng-click="salvar()"><i class="fa fa-floppy-o"></i></i> Salvar</button>
+                        <button type="button" class="btn btn-warning" ng-click="limpar()"><i class="fa fa-eraser"></i> Limpar</button>
+                    </div>
+                </div><br/>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div ui-grid="gridOptions"></div>
                     </div>
                 </div>
             </div>
             <div class="panel-footer">
-                <div class="row">
+                <!--<div class="row">
                     <div class="col-md-12">
                         <button type="button" class="btn btn-primary" ng-click="salvar()"><i class="fa fa-floppy-o"></i></i> Salvar</button>
                         <button type="button" class="btn btn-warning" ng-click="limpar()"><i class="fa fa-eraser"></i> Limpar</button>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
     </form>

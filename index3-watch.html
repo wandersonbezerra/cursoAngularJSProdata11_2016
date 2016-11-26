@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AngularJS - ProData</title>
+
+    <!--inicio css -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="node_modules/angular-toastr/dist/angular-toastr.css">
+    <link rel="stylesheet" href="app/css/style.css">
+
+    <!--inicio js -->
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-messages/angular-messages.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.js"></script>
+    <script src="node_modules/angular-toastr/dist/angular-toastr.tpls.js"></script>
+
+    <script src="app/config/pd-app.js"></script>
+    <script src="app/controller/index-watch.controller.js"></script>
+
+
+
+</head>
+
+<body ng-app="pdApp" class="container">
+
+<div ng-controller="IndexWatchController">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label">Cor</label>
+                <input class="form-control" ng-model="cor" />
+            </div>
+            {{cor}}
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Classe CSS</label>
+                <select class="form-control" ng-model="classeCss">
+                    <option value="verde">Verde</option>
+                    <option value="azul">Azul</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" ng-style="styleDiv"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" ng-style="styleDiv" ng-class="classeCss"></div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<div ng-controller="CadastroBairroController">
+    <form name="bairroForm" novalidate>
+        <div class="panel panel-success">
+            <div class="panel-heading"><i class="fa fa-edit fa-2x"></i> {{texto}}</div>
+            <div class="panel-body">
+                <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+                    <div>
+                        <md-input-container>
+                            <label>Nome do Bairro</label>
+                            <input type="text"
+                                   class="form-control"
+                                   ng-model="entidade.nomeBairro"
+                                   ng-required="true"
+                                   ng-minlength="3"
+                                   ng-maxlength="20"
+                                   name="nomeBairro"
+                                   id="nomeBairro"
+                                   autofocus="true"
+                            />
+                            <div ng-messages="bairroForm.nomeBairro.$error" ng-if="bairroForm.nomeBairro.$touched"
+                                 class="text-danger">
+                                <div ng-messages-include="app/template/input-ng-messages.html"></div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Nome da Cidade</label>
+                            <input type="text"
+                                   class="form-control"
+                                   ng-model="entidade.nomeCidade"
+                                   ng-required="true"
+                                   ng-minlength="3"
+                                   ng-maxlength="20"
+                                   name="nomeCidade"
+                                   id="nomeCidade"
+                                   autofocus="true"
+                            />
+                            <div ng-messages="bairroForm.nomeCidade.$error" ng-if="bairroForm.nomeCidade.$touched"
+                                 class="text-danger">
+                                <div ng-messages-include="app/template/input-ng-messages.html"></div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Estado</label>
+                            <input type="text"
+                                   class="form-control"
+                                   ng-model="entidade.estado"
+                                   ng-required="true"
+                                   ng-minlength="3"
+                                   ng-maxlength="20"
+                                   name="estado"
+                                   id="estado"
+                                   autofocus="true"
+                            />
+                            <div ng-messages="bairroForm.estado.$error" ng-if="bairroForm.estado.$touched"
+                                 class="text-danger">
+                                <div ng-messages-include="app/template/input-ng-messages.html"></div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </md-content>
+
+                <br/>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div ui-grid="gridOptions"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-primary" ng-click="salvar()"><i
+                                class="fa fa-floppy-o"></i></i> Salvar
+                        </button>
+                        <button type="button" class="btn btn-warning" ng-click="limpar()"><i
+                                class="fa fa-eraser"></i> Limpar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+</div>
